@@ -1,8 +1,12 @@
 import { useState } from 'react';
 import { Header, Hero, Acquaintance, Container, Users, Registration, Footer } from 'components';
 
+import SmoothScroll from 'smooth-scroll';
+
 function App() {
   const [openModal, setOpenModal] = useState(false);
+
+  const scroll = new SmoothScroll('a[href*="#"]');
 
   return (
     <>

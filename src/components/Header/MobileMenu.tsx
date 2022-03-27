@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 import Portal from 'components/Modal/Portal';
 import { HeaderLink } from './HeaderLink';
 import { List } from 'utils/List';
@@ -13,7 +13,7 @@ interface IMobileMenuProps {
   closeModal: () => void;
 }
 
-export const MobileMenu = ({ closeModal }: IMobileMenuProps) => {
+export const MobileMenu: FC<IMobileMenuProps> = ({ closeModal }) => {
   const ModalBgRef = useRef<HTMLDivElement>(null);
   const [closingModal, setClosingModal] = useState(false);
 

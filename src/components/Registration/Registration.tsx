@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { Form, FormikProps, Formik } from 'formik';
 import { FormField, FileUploader, RadioInput, Button, Сongratulations } from 'components';
 import { getPositions, registerUser } from 'utils/api';
@@ -12,7 +12,7 @@ interface IRegistration {
   setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const Registration = ({ openModal, setOpenModal }: IRegistration) => {
+export const Registration: FC<IRegistration> = ({ openModal, setOpenModal }) => {
   const [positions, setPositions] = useState<IPositions[] | undefined>();
 
   useEffect(() => {

@@ -1,16 +1,17 @@
-import { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { Button, UserCard } from 'components';
 import CircularProgress from '@mui/material/CircularProgress';
 import useMediaQuery from 'hooks/useMediaQuery';
 import { getUsers } from 'utils/api';
-import { IUserObj } from 'types/form';
+import { IUserObj, IUser } from 'types/form';
 import styles from './Users.module.scss';
+import { List } from 'utils/List';
 
 interface IMediaMapNum {
   [key: string]: number;
 }
 
-interface IUser {
+interface IUsersProps {
   openModal: boolean;
 }
 
@@ -20,7 +21,7 @@ const userAmountMap: IMediaMapNum = {
   small: 3,
 };
 
-export const Users = ({ openModal }: IUser) => {
+export const Users: FC<IUsersProps> = ({ openModal }) => {
   const [usersObj, setUsersObj] = useState<IUserObj>();
 
   const mediaType = useMediaQuery(541, 900);
@@ -53,7 +54,7 @@ export const Users = ({ openModal }: IUser) => {
       ) : (
         <>
           <div className={styles.users__container}>
-            {usersObj && usersObj.users.map((item) => <UserCard user={item} key={`${item.id}_${item.phone}`} />)}
+            <List<IUser> values={usersObj.users} component={UserCard} extractKey={(value) => value.name} />
           </div>
           <Button disabled={usersObj?.page === usersObj?.total_pages} onClick={showMore} text="Show more" />
         </>
