@@ -1,0 +1,122 @@
+@import 'styles/base/variables.scss';
+@import 'styles/mixins/index.scss';
+
+.header {
+  background-color: $white;
+  position: fixed;
+  height: 60px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  box-shadow: -1px -1px 5px rgba(0, 0, 0, 0.15), 0px 4px 15px rgba(0, 0, 0, 0.15);
+  z-index: 3;
+
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__navigation {
+    display: flex;
+    align-items: center;
+
+    //I did this positioning because of design is not logical
+    transform: translateX(16px);
+
+    @include sm {
+      display: none;
+    }
+  }
+
+  &__link {
+    color: $text;
+    padding: 7px 15px;
+    @include text-s;
+    border-radius: 4px;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      color: $secondary;
+      background-color: rgba(0, 189, 211, 0.1);
+    }
+
+    //I can do this only if i have some links
+    // &:visited {
+    //   color: $secondary;
+    // }
+
+    @include sm {
+      width: 100%;
+      padding: 7px 8px;
+    }
+  }
+
+  &__menu {
+    display: none;
+
+    @include sm {
+      display: block;
+    }
+  }
+}
+
+.mobileMenu {
+  background-color: #ffffff;
+  height: 100%;
+  width: 270px;
+  padding: 0 8px;
+  overflow: auto;
+  animation: animation 0.4s ease-in-out;
+
+  &__bg {
+    background: rgba(0, 0, 0, 0.5);
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 4;
+  }
+
+  &__logo {
+    margin: 17px 0 17px 8px;
+  }
+
+  &__listSection {
+    padding-bottom: 22px;
+
+    & > hr {
+      background-color: #e0e0e0;
+      height: 1px;
+      width: 270px;
+      margin-bottom: 23px;
+      transform: translateX(-8px);
+    }
+
+    & > a {
+      &:not(:last-child) {
+        margin-bottom: 8px;
+      }
+    }
+  }
+
+  &.closeModal {
+    transition: transform 0.4s;
+    transform: translateX(-100%);
+  }
+}
+
+.menuOpen {
+  overflow: hidden;
+}
+
+@keyframes animation {
+  from {
+    transform: translateX(-100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}

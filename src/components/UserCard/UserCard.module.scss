@@ -1,0 +1,60 @@
+@import 'styles/base/variables.scss';
+@import 'styles/mixins/font-size.scss';
+
+.user {
+  background-color: $white;
+  height: 313px;
+  width: 100%;
+  padding: 36px 30px 28px 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 10px;
+
+  &__avatar {
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+  }
+
+  //added '...' after text and line wrapping
+  &__name {
+    display: -webkit-box;
+    margin-bottom: 4px;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
+    @include text-m;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  //added '...' after text
+  &__email {
+    max-width: 210px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: pre;
+  }
+
+  //added '...' after text and line wrapping
+  &__position {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
+  }
+}
+
+.pointer {
+  cursor: pointer;
+}

@@ -1,0 +1,59 @@
+@mixin to($width) {
+  @media (max-width: $width) {
+    @content;
+  }
+}
+
+@mixin from($width) {
+  @media (min-width: $width) {
+    @content;
+  }
+}
+
+@mixin between($from, $to) {
+  @media (min-width: $from) and (max-width: $to) {
+    @content;
+  }
+}
+
+@mixin hd {
+  @include to('1440px') {
+    @content;
+  }
+}
+
+@mixin md {
+  @include to('1024px') {
+    @content;
+  }
+}
+
+@mixin sm {
+  @include to('768px') {
+    @content;
+  }
+}
+
+@mixin lg {
+  @include from('1024px') {
+    @content;
+  }
+}
+
+@mixin sm-md {
+  @include between('769px', '1023px') {
+    @content;
+  }
+}
+
+@mixin xs-sm {
+  @include between('360px', '767px') {
+    @content;
+  }
+}
+
+@mixin xs {
+  @include to('360px') {
+    @content;
+  }
+}

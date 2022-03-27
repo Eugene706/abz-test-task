@@ -1,0 +1,49 @@
+@import 'styles/base/variables.scss';
+@import 'styles/mixins/index.scss';
+
+.registration {
+  margin-bottom: 179px;
+  padding-top: 175px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @include xs-sm {
+    margin-bottom: 149px;
+    padding-top: 145px;
+  }
+
+  &__title {
+    margin-bottom: 10px;
+    text-align: center;
+    @include text-l;
+  }
+
+  &__sutitle {
+    margin-bottom: 32px;
+    text-align: center;
+    @include text-m;
+  }
+
+  &__form {
+    max-width: 380px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    //Added margin fo first two elements
+    & > :nth-child(-n + 2) {
+      margin-bottom: 27px;
+    }
+  }
+}
+
+.radio {
+  margin: 20px 0 48px 0;
+  align-self: start;
+
+  &__title {
+    margin-bottom: 11px;
+  }
+}

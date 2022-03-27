@@ -1,0 +1,79 @@
+@import 'styles/base/variables.scss';
+@import 'styles/mixins/index.scss';
+
+.hero {
+  background-color: $hero-bg;
+  overflow: hidden;
+
+  &__content {
+    position: relative;
+    height: 650px;
+    display: flex;
+    align-items: center;
+
+    @include sm {
+      max-height: 500px;
+    }
+    @include xs {
+      max-height: 469px;
+    }
+  }
+
+  &__text {
+    z-index: 1;
+  }
+
+  &__title {
+    max-width: 670px;
+    margin-bottom: 21px;
+    @include text-l;
+
+    @include sm {
+      max-width: 410px;
+    }
+    @include xs {
+      max-width: 240px;
+    }
+  }
+
+  &__description {
+    max-width: 527px;
+    margin-bottom: 25px;
+
+    @include sm {
+      max-width: 424px;
+      margin-bottom: 32px;
+    }
+    @include xs {
+      max-width: 240px;
+    }
+
+    &_invisible {
+      @include xs {
+        display: none;
+      }
+    }
+  }
+
+  &__banner {
+    position: absolute;
+    height: 100%;
+    top: 0;
+    left: -111px;
+
+    @include hd {
+      width: 100%;
+      object-fit: cover;
+      left: 0;
+    }
+    @include sm {
+      left: 12px;
+    }
+    @include xs {
+      height: 380px;
+      top: auto;
+      left: 10px;
+      bottom: -22px;
+    }
+  }
+}

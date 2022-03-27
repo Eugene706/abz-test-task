@@ -1,0 +1,52 @@
+@import 'styles/mixins/index.scss';
+
+.users {
+  padding-top: 190px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  @include md {
+    padding-top: 175px;
+  }
+
+  @include to(767px) {
+    padding-top: 145px;
+  }
+
+  &__title {
+    margin-bottom: 10px;
+    @include text-l;
+  }
+
+  &__subtitle {
+    @include text-m;
+    margin-bottom: 32px;
+  }
+
+  &__container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-bottom: 50px;
+
+    @include md {
+      gap: 29px;
+    }
+
+    @include to(900px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include sm {
+      gap: 16px;
+    }
+
+    @include to(541px) {
+      grid-template-columns: repeat(1, 1fr);
+      gap: 20px;
+    }
+  }
+}

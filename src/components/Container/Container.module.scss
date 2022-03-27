@@ -1,0 +1,21 @@
+@import 'styles/mixins/responsive.scss';
+
+.container {
+  max-width: 1170px;
+  width: 100%;
+  margin: 0 auto;
+
+  @include hd {
+    padding: 0 15px;
+  }
+  @include md {
+    padding: 0 60px;
+    margin: 0;
+  }
+  @include sm {
+    padding: 0 32px;
+  }
+  @include xs {
+    padding: 0 16px;
+  }
+}
