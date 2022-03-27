@@ -43,7 +43,6 @@ export const registerUser = async (data: IForm) => {
     const user = await axios.post<any>('https://frontend-test-assignment-api.abz.agency/api/v1/users', userData, {
       headers: { Token: token.data.token },
     });
-    console.log(user.data);
 
     return user.data;
   } catch (error) {

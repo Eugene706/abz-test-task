@@ -30,8 +30,6 @@ export const Users: FC<IUsersProps> = ({ openModal }) => {
     getUsers(userAmountMap[mediaType]).then((res) => setUsersObj(res));
   }, [mediaType, openModal]);
 
-  console.log(usersObj);
-
   const showMore = () => {
     usersObj?.page &&
       getUsers(userAmountMap[mediaType], usersObj.page + 1).then((res) => {

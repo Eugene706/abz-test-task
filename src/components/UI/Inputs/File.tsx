@@ -18,7 +18,6 @@ export const FileUploader: FC<IFormFieldProps> = ({ error, ...props }) => {
   };
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    console.log(event.target.files?.[0]);
     helpers.setTouched(true, false);
     helpers.setValue(event.target.files?.[0]);
   };

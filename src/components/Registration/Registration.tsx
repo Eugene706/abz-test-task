@@ -41,7 +41,6 @@ export const Registration: FC<IRegistration> = ({ openModal, setOpenModal }) => 
         onSubmit={(values) => {
           setOpenModal(true);
           registerUser(values);
-          console.log(values);
         }}
       >
         {(props: FormikProps<IForm>) => (

@@ -20,7 +20,6 @@ const defineFileSize = (value: File): Promise<boolean> => {
 
       img.src = url;
     } catch (error) {
-      console.log(error);
       resolve(false);
     }
   });
