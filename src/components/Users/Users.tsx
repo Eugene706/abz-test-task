@@ -52,7 +52,7 @@ export const Users: FC<IUsersProps> = ({ openModal }) => {
       ) : (
         <>
           <div className={styles.users__container}>
-            <List<IUser> values={usersObj.users} component={UserCard} extractKey={(value) => value.name} />
+            <List<IUser> values={usersObj.users} component={UserCard} extractKey={(value) => value.email} />
           </div>
           <Button disabled={usersObj?.page === usersObj?.total_pages} onClick={showMore} text="Show more" />
         </>

@@ -25,10 +25,6 @@ const defineFileSize = (value: File): Promise<boolean> => {
   });
 };
 
-const format = (value: File) => {
-  return supportedFormats.includes(value?.type);
-};
-
 const FormSchema: SchemaOf<IForm> = yup.object().shape({
   name: yup.string().min(2, 'Name is too short').max(100, 'Name is too long').required('Required').defined(),
   email: yup
@@ -44,9 +40,8 @@ const FormSchema: SchemaOf<IForm> = yup.object().shape({
     .mixed()
     .required('Required')
     .test('fileSize', 'The file is too large', (value) => value?.size <= 5242880)
-    .test('fileFormat', 'Supported file formats: JPG, JPEG', format)
     .defined()
-    .test('fileResolution', 'The file is too small', async (value) => await defineFileSize(value)),
+    .test('fileResolution', 'The file is too small', defineFileSize),
 });
 
 export default FormSchema;

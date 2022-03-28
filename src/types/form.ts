@@ -34,3 +34,8 @@ export interface IHeaderNavigation {
   name: string;
   link: string;
 }
+
+export interface IRegistrationResponse {
+  message: string;
+  success: boolean;
+}

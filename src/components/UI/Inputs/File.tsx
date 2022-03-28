@@ -24,7 +24,15 @@ export const FileUploader: FC<IFormFieldProps> = ({ error, ...props }) => {
 
   return (
     <div className={styles.input__container}>
-      <input className={styles.input} id="imageInput" type="file" {...props} onChange={handleChange} ref={hiddenFileInput} />
+      <input
+        className={styles.input}
+        accept="image/jpeg,image/jpg,jpeg,jpg"
+        id="imageInput"
+        type="file"
+        {...props}
+        onChange={handleChange}
+        ref={hiddenFileInput}
+      />
       <button
         className={`${styles.input__button} ${error ? styles.input__button_error : ''}`}
         type="button"

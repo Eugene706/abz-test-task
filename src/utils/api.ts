@@ -1,5 +1,5 @@
-import { IForm, IPositions, IUserObj } from 'types/form';
-import axios from 'axios';
+import { IForm, IPositions, IRegistrationResponse, IUserObj } from 'types/form';
+import axios, { AxiosError } from 'axios';
 
 interface IPositionsResponse {
   positions: IPositions[];
@@ -31,7 +31,7 @@ export const getPositions = async () => {
   }
 };
 
-export const registerUser = async (data: IForm) => {
+export const registerUser = async (data: IForm): Promise<IRegistrationResponse> => {
   try {
     const token = await axios.get<ITokenResponse>('https://frontend-test-assignment-api.abz.agency/api/v1/token');
 
@@ -40,12 +40,17 @@ export const registerUser = async (data: IForm) => {
       userData.append(key, value);
     }
 
-    const user = await axios.post<any>('https://frontend-test-assignment-api.abz.agency/api/v1/users', userData, {
-      headers: { Token: token.data.token },
-    });
+    const user = await axios.post<IRegistrationResponse>(
+      'https://frontend-test-assignment-api.abz.agency/api/v1/users',
+      userData,
+      {
+        headers: { Token: token.data.token },
+      }
+    );
 
     return user.data;
-  } catch (error) {
-    console.log(error);
+  } catch (err) {
+    const error = err as AxiosError;
+    return error.response?.data;
   }
 };

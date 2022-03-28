@@ -2,10 +2,11 @@ import { FC, useEffect, useState } from 'react';
 import { Form, FormikProps, Formik } from 'formik';
 import { FormField, FileUploader, RadioInput, Button, Сongratulations } from 'components';
 import { getPositions, registerUser } from 'utils/api';
-import { IForm, IPositions } from 'types/form';
+import { IForm, IPositions, IRegistrationResponse } from 'types/form';
 import FormSchema from 'utils/form.schema';
 
 import styles from './Registration.module.scss';
+import { error } from 'console';
 
 interface IRegistration {
   openModal: boolean;
@@ -14,6 +15,7 @@ interface IRegistration {
 
 export const Registration: FC<IRegistration> = ({ openModal, setOpenModal }) => {
   const [positions, setPositions] = useState<IPositions[] | undefined>();
+  const [errorRegistrationRes, setErrorRegistrationRes] = useState<IRegistrationResponse>();
 
   useEffect(() => {
     getPositions().then((res) => setPositions(res));
@@ -39,8 +41,15 @@ export const Registration: FC<IRegistration> = ({ openModal, setOpenModal }) => 
         validateOnMount
         validationSchema={FormSchema}
         onSubmit={(values) => {
-          setOpenModal(true);
-          registerUser(values);
+          registerUser(values)
+            .then(
+              (res) => {
+                setErrorRegistrationRes(res);
+                setOpenModal(true);
+              },
+              (error) => setErrorRegistrationRes(error)
+            )
+            .finally(() => setOpenModal(true));
         }}
       >
         {(props: FormikProps<IForm>) => (
@@ -82,7 +91,7 @@ export const Registration: FC<IRegistration> = ({ openModal, setOpenModal }) => 
           </Form>
         )}
       </Formik>
-      {openModal && <Сongratulations closeModal={closeModal} />}
+      {openModal && <Сongratulations closeModal={closeModal} error={errorRegistrationRes} />}
     </section>
   );
 };
